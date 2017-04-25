@@ -1,7 +1,8 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import bakeryRouter from './bakery/bakery-router'
+import bakeryRoutes from './bakery/bakery-router'
+import { Worker } from './worker';
 
 /**
  * The main application that creates and configures an ExpressJS web server.
@@ -18,6 +19,10 @@ class App {
     this.express = express();
     this.middleware();
     this.routes();
+  }
+
+  public set worker(w: Worker) {
+    bakeryRoutes.worker = w;
   }
 
   /**
@@ -44,9 +49,9 @@ class App {
       });
     });
     this.express.use('/api/v1', router);
-    this.express.use('/api/v1/bakery', bakeryRouter);
+    this.express.use('/api/v1/bakery', bakeryRoutes.router);
   }
 
 }
 
-export default new App().express;
+export default new App();

@@ -1,14 +1,16 @@
 import * as http from 'http';
 import * as debug from 'debug';
 
-import App from './app';
+import app from './app';
+import { KueWorker } from './kue/kue-worker';
 
+app.worker = new KueWorker();
 debug('ts-express:server');
 
 const port = normalizePort(process.env.PORT || 3000);
-App.set('port', port);
+app.express.set('port', port);
 
-const server = http.createServer(App);
+const server = http.createServer(app.express);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

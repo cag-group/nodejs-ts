@@ -4,10 +4,13 @@ import {
   Response,
   NextFunction
 } from 'express';
-const Cookies = require('./data');
+import { Worker } from '../worker';
+
+const Cookies = ['Bulle', 'Kaka'];
 
 export class BakeryRouter {
   router: Router;
+  worker: Worker;
 
   /**
    * Initialize the BakeryRouter
@@ -24,12 +27,18 @@ export class BakeryRouter {
     res.send(Cookies);
   }
 
+  public postStuff(req: Request, res: Response, next: NextFunction) {
+    this.worker.startJob();
+    res.status(204).send();
+  }
+
   /**
    * Take each handler, and attach to one of the Express.Router's
    * endpoints.
    */
   init() {
     this.router.get('/cookies', this.getCookies);
+    this.router.post('/stuff', (req, res, next) => this.postStuff(req, res, next));
   }
 
 }
@@ -38,4 +47,4 @@ export class BakeryRouter {
 const bakeryRoutes = new BakeryRouter();
 bakeryRoutes.init();
 
-export default bakeryRoutes.router;
+export default bakeryRoutes;

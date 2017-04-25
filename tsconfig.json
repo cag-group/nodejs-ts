@@ -9,12 +9,16 @@
     "noImplicitUseStrict": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "diagnostics": true,
+    "outDir": "dist",
     "typeRoots": [
       "node_modules/@types"
     ]
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

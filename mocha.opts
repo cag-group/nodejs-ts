@@ -1,0 +1,5 @@
+--reporter spec
+--ui bdd
+--watch-extensions ts
+--compilers ts:ts-node/register
+test/**/*.spec.ts

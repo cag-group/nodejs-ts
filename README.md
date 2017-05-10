@@ -26,9 +26,13 @@ module directory:
 - `src/api/v1-resource`: provides the implementation of the sub-router for
   `/api/v1/...`
 - `src/api/v1-resource/jobs-resource`: provides the implementation of the 
-  sub-router for `api/v1/jobs/...`
+  sub-router for `api/v1/jobs/...`. This resource provides an example of 
+  posting jobs into a queue (based on [Kue](http://automattic.github.io/kue/))
+  which executes the jobs in the background. 
 - `src/api/v1-resource/users-resource`: provides the implementation of the
-  sub-router for `api/v1/users/...`
+  sub-router for `api/v1/users/...`. The resource mimics a DB server which 
+  just returns a list of user names.
 
 Each of the module directories has a corresponding BDD style test specification 
-in `./test`.  
+in `./test`. These tests use [mocha](https://mochajs.org/) as test runner and 
+[chai](http://chaijs.com/) for assertions.  

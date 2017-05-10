@@ -22,11 +22,12 @@ corresponding to the resource structure of the REST API, which has its root in `
 sub-router is placed in its own 
 module directory:
 
-- `src/v1-resource`: provides the implementation of the sub-router for
+- `src/api`: provides the express root application resource for `api/...`
+- `src/api/v1-resource`: provides the implementation of the sub-router for
   `/api/v1/...`
-- `src/v1-resource/jobs-resource`: provides the implementation of the 
+- `src/api/v1-resource/jobs-resource`: provides the implementation of the 
   sub-router for `api/v1/jobs/...`
-- `src/v1-resource/users-resource`: provides the implementation of the
+- `src/api/v1-resource/users-resource`: provides the implementation of the
   sub-router for `api/v1/users/...`
 
 Each of the module directories has a corresponding BDD style test specification 

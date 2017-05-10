@@ -1,10 +1,10 @@
 import * as http from 'http';
 import * as debug from 'debug';
 import * as logger from 'morgan';
-import { App } from './app';
+import { Api } from './api/api';
 import { KueWorker } from './kue/kue-worker';
 
-const app = new App(new KueWorker(), logger(process.env.LOG_FORMAT || 'dev'));
+const app = new Api(new KueWorker(), logger(process.env.LOG_FORMAT || 'dev'));
 debug('ts-express:server');
 
 const port = normalizePort(process.env.PORT || 3000);

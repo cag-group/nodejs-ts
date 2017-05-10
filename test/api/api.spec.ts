@@ -1,14 +1,14 @@
-import { App } from '../src/app';
+import { Api } from '../../src/api/api';
 import * as chai from 'chai';
 import { expect } from 'chai';
 const chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
 
-describe("App", () => {
-  let app: App;
+describe("Api", () => {
+  let app: Api;
   before(() => {
-    app = new App();
+    app = new Api();
   });
 
   describe('GET /api/v1/ping', () => {

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run clean && mocha --opts mocha.opts",
     "test:watch": "npm run clean && mocha --opts mocha.opts --watch",
-    "start": "npm run build && node src/index.js",
-    "start:watch": "nodemon --exec npm run start -- ./src/index.ts",
+    "start": "npm run build && node src/server.js",
+    "start:watch": "nodemon --exec npm run start -- ./src/server.ts",
     "clean": "rimraf src/**/*.js src/**/*.js.* test/**/*.js test/**/*.js.*",
     "build": "tsc"
   },

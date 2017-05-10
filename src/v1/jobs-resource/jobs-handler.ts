@@ -8,7 +8,9 @@ export class JobsHandler {
   }
 
   public startJob() {
-    return this.worker.startJob();
+    if (this.worker) {
+      this.worker.startJob();
+    }
   }
 }
 

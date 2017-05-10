@@ -1,8 +1,8 @@
 import {
-  Router,
+  NextFunction,
   Request,
   Response,
-  NextFunction
+  Router
 } from 'express';
 import { JobsHandler } from './jobs-handler';
 

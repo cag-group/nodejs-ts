@@ -1,8 +1,8 @@
 import {
-  Router,
+  NextFunction,
   Request,
   Response,
-  NextFunction
+  Router
 } from 'express';
 
 const users = ['Kalle', 'Nisse'];

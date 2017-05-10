@@ -1,4 +1,4 @@
-import app from '../../src/app';
+import { App } from '../../src/app';
 import { expect } from 'chai';
 import * as chai from 'chai';
 import { Worker } from '../../src/worker';
@@ -8,8 +8,10 @@ chai.use(chaiHttp);
 
 describe("Jobs resource", () => {
   let worker: DummyWorker;
+  let app: App;
   before(() => {
-    app.worker = worker = new DummyWorker();
+    worker = new DummyWorker();
+    app = new App(worker);
   });
 
   describe('POST /api/v1/jobs', () => {

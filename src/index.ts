@@ -1,10 +1,10 @@
 import * as http from 'http';
 import * as debug from 'debug';
-
-import app from './app';
+import * as logger from 'morgan';
+import { App } from './app';
 import { KueWorker } from './kue/kue-worker';
 
-app.worker = new KueWorker();
+const app = new App(new KueWorker(), logger('dev'));
 debug('ts-express:server');
 
 const port = normalizePort(process.env.PORT || 3000);
@@ -15,7 +15,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-function normalizePort(val: number|string): number|string|boolean {
+function normalizePort(val: number | string): number | string | boolean {
   let port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
   if (isNaN(port)) return val;
   else if (port >= 0) return port;
@@ -25,7 +25,7 @@ function normalizePort(val: number|string): number|string|boolean {
 function onError(error: NodeJS.ErrnoException): void {
   if (error.syscall !== 'listen') throw error;
   let bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
-  switch(error.code) {
+  switch (error.code) {
     case 'EACCES':
       console.error(`${bind} requires elevated privileges`);
       process.exit(1);

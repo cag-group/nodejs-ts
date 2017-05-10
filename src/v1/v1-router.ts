@@ -1,15 +1,15 @@
 import {
-  Router,
+  NextFunction,
   Request,
   Response,
-  NextFunction
+  Router
 } from 'express';
 import { jobsRouter } from './jobs-resource/jobs-router';
 import { usersRouter } from './users-resource/users-router';
 
 const v1Router: Router = Router();
 
-function getPing(req:Request, res: Response, next: NextFunction) {
+function getPing(req: Request, res: Response, next: NextFunction) {
   res.json({
     message: 'OK'
   });

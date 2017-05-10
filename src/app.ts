@@ -1,16 +1,13 @@
 import * as express from 'express';
-import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import {
-  jobsHandler,
-} from './v1/jobs-resource/jobs-router';
+import { jobsHandler } from './v1/jobs-resource/jobs-router';
 import { Worker } from './worker';
 import { v1Router } from './v1/v1-router';
 
 /**
  * The main application that creates and configures an ExpressJS web server.
  */
-class App {
+export class App {
 
   /** The Express instance */
   public express: express.Application;
@@ -18,21 +15,20 @@ class App {
   /**
    * Run configuration methods on the Express instance.
    */
-  constructor() {
+  constructor(worker?: Worker, private loggerMiddleware?: express.RequestHandler) {
     this.express = express();
+    jobsHandler.configure(worker);
     this.middleware();
     this.routes();
-  }
-
-  public set worker(w: Worker) {
-    jobsHandler.configure(w);
   }
 
   /**
    * Configure Express middleware.
    */
   private middleware(): void {
-    this.express.use(logger('dev'));
+    if (this.loggerMiddleware) {
+      this.express.use(this.loggerMiddleware);
+    }
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({extended: false}));
   }
@@ -47,5 +43,3 @@ class App {
     this.express.use('/api/v1', v1Router);
   }
 }
-
-export default new App();

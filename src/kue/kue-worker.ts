@@ -1,6 +1,6 @@
 import {
-  Queue,
-  createQueue
+  createQueue,
+  Queue
 } from 'kue';
 
 import { Worker } from '../worker';

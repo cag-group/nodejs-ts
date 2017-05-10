@@ -1,4 +1,4 @@
 export interface Worker {
-  startJob():void;
+  startJob(): void;
 }
 

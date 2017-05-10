@@ -1,4 +1,4 @@
-import app from '../../src/app';
+import { App } from '../../src/app';
 import { expect } from 'chai';
 import * as chai from 'chai';
 const chaiHttp = require('chai-http');
@@ -6,6 +6,11 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 describe("Users resource", () => {
+  let app: App;
+  before(() => {
+    app = new App();
+  });
+
   describe('GET /api/v1/users', () => {
     it('should respond with a JSON array containing user names', () => {
       return chai.request(app.express).get('/api/v1/users')

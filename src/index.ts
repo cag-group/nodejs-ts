@@ -4,7 +4,7 @@ import * as logger from 'morgan';
 import { App } from './app';
 import { KueWorker } from './kue/kue-worker';
 
-const app = new App(new KueWorker(), logger('dev'));
+const app = new App(new KueWorker(), logger(process.env.LOG_FORMAT || 'dev'));
 debug('ts-express:server');
 
 const port = normalizePort(process.env.PORT || 3000);

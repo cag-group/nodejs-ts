@@ -1,8 +1,8 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { jobsHandler } from './v1/jobs-resource/jobs-router';
+import { jobsHandler } from './v1-resource/jobs-resource/jobs-router';
 import { Worker } from './worker';
-import { v1Router } from './v1/v1-router';
+import { v1Router } from './v1-resource/v1-router';
 
 /**
  * The main application that creates and configures an ExpressJS web server.
@@ -15,7 +15,8 @@ export class App {
   /**
    * Run configuration methods on the Express instance.
    */
-  constructor(worker?: Worker, private loggerMiddleware?: express.RequestHandler) {
+  constructor(worker?: Worker,
+              private loggerMiddleware?: express.RequestHandler) {
     this.express = express();
     jobsHandler.configure(worker);
     this.middleware();

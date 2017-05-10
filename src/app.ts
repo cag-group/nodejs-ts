@@ -1,8 +1,11 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import bakeryRoutes from './bakery/bakery-router'
+import {
+  jobsHandler,
+} from './v1/jobs-resource/jobs-router';
 import { Worker } from './worker';
+import { v1Router } from './v1/v1-router';
 
 /**
  * The main application that creates and configures an ExpressJS web server.
@@ -22,7 +25,7 @@ class App {
   }
 
   public set worker(w: Worker) {
-    bakeryRoutes.worker = w;
+    jobsHandler.configure(w);
   }
 
   /**
@@ -41,17 +44,8 @@ class App {
     /* This is just to get up and running, and to make sure what we've got is
      * working so far. This function will change when we start to add more
      * API endpoints */
-    let router = express.Router();
-    // placeholder route handler
-    router.get('/ping', (req, res) => {
-      res.json({
-        message: 'OK'
-      });
-    });
-    this.express.use('/api/v1', router);
-    this.express.use('/api/v1/bakery', bakeryRoutes.router);
+    this.express.use('/api/v1', v1Router);
   }
-
 }
 
 export default new App();

@@ -2,13 +2,13 @@
   "name": "nodejs-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "npm run clean && mocha --opts mocha.opts",
     "test:watch": "npm run clean && mocha --opts mocha.opts --watch",
     "start": "npm run build && node dist/index.js",
+    "start:watch": "nodemon --exec npm run start -- ./src/index.ts",
     "clean": "rimraf src/**/*.js src/**/*.js.* test/**/*.js test/**/*.js.* index.js index.js.*",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
     "build": "tsc"
   },
   "keywords": [],
